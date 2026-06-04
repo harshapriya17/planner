@@ -1,5 +1,8 @@
 import 'dart:async';
+
 import 'package:flutter/material.dart';
+
+import '../widgets/bottom_navbar.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -20,11 +23,18 @@ class _SplashScreenState
     Timer(
 
       const Duration(seconds: 3),
-
           () {
 
-        // Navigation later
+        Navigator.pushReplacement(
 
+          context,
+
+          MaterialPageRoute(
+
+            builder: (context) =>
+            const BottomNavbar(),
+          ),
+        );
       },
     );
   }
@@ -74,7 +84,7 @@ class _SplashScreenState
               "Study Planner",
 
               style: TextStyle(
-                fontSize: 40,
+                fontSize: 38,
                 fontWeight: FontWeight.bold,
                 color: Colors.black87,
                 letterSpacing: 2,
@@ -83,13 +93,13 @@ class _SplashScreenState
 
             const SizedBox(height: 10),
 
-            const Text(
+            Text(
 
               "Calm • Focus • Start",
 
               style: TextStyle(
                 fontSize: 16,
-                color: Colors.black38,
+                color: Colors.grey.shade600,
                 letterSpacing: 1,
               ),
             ),
