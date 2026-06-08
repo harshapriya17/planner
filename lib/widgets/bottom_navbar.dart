@@ -30,168 +30,43 @@ class _BottomNavbarState
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
-
       body: pages[currentIndex],
-
-      bottomNavigationBar: Container(
-
-        margin: const EdgeInsets.all(12),
-
-        decoration: BoxDecoration(
-
-          color: const Color(0xffFFFDFB),
-
-          borderRadius:
-          BorderRadius.circular(30),
-
-          boxShadow: [
-
-            BoxShadow(
-
-              color: Colors.grey.shade300,
-
-              blurRadius: 10,
-
-              offset: const Offset(0, 5),
-            ),
-          ],
-        ),
-
-        child: BottomNavigationBar(
-
-          currentIndex: currentIndex,
-
-          type: BottomNavigationBarType.fixed,
-
-          backgroundColor: Colors.transparent,
-
-          elevation: 0,
-
-          selectedItemColor:
-          const Color(0xffF79B63),
-
-          unselectedItemColor:
-          Colors.grey.shade500,
-
-          showSelectedLabels: false,
-
-          showUnselectedLabels: false,
-
-          onTap: (index) {
-
-            setState(() {
-
-              currentIndex = index;
-
-            });
-          },
-
-          items: [
-
-            BottomNavigationBarItem(
-
-              icon: navIcon(
-
-                icon: Icons.home_rounded,
-
-                index: 0,
-              ),
-
-              label: "",
-            ),
-
-            BottomNavigationBarItem(
-
-              icon: navIcon(
-
-                icon: Icons.menu_book_rounded,
-
-                index: 1,
-              ),
-
-              label: "",
-            ),
-
-            BottomNavigationBarItem(
-
-              icon: navIcon(
-
-                icon: Icons.task_alt_rounded,
-
-                index: 2,
-              ),
-
-              label: "",
-            ),
-
-            BottomNavigationBarItem(
-
-              icon: navIcon(
-
-                icon: Icons.timer_rounded,
-
-                index: 3,
-              ),
-
-              label: "",
-            ),
-
-            BottomNavigationBarItem(
-
-              icon: navIcon(
-
-                icon: Icons.person_rounded,
-
-                index: 4,
-              ),
-
-              label: "",
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-
-  /// CUSTOM NAV ICON
-  Widget navIcon({
-
-    required IconData icon,
-    required int index,
-
-  }) {
-
-    bool isSelected =
-        currentIndex == index;
-
-    return AnimatedContainer(
-
-      duration:
-      const Duration(milliseconds: 250),
-
-      padding: const EdgeInsets.all(10),
-
-      decoration: BoxDecoration(
-
-        color: isSelected
-            ? const Color(0xffF79B63)
-            : Colors.transparent,
-
-        borderRadius:
-        BorderRadius.circular(18),
-      ),
-
-      child: Icon(
-
-        icon,
-
-        size: 28,
-
-        color: isSelected
-            ? Colors.white
-            : Colors.grey,
+      bottomNavigationBar: BottomNavigationBar(
+        currentIndex: currentIndex,
+        type: BottomNavigationBarType.fixed,
+        backgroundColor: const Color(0xffFFFDFB),
+        selectedItemColor: const Color(0xffF79B63),
+        unselectedItemColor: Colors.grey.shade500,
+        showSelectedLabels: false,
+        showUnselectedLabels: false,
+        onTap: (index) {
+          setState(() {
+            currentIndex = index;
+          });
+        },
+        items: const [
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home_rounded, size: 28),
+            label: "Home",
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.menu_book_rounded, size: 28),
+            label: "Subjects",
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.task_alt_rounded, size: 28),
+            label: "Tasks",
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.timer_rounded, size: 28),
+            label: "Sessions",
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.person_rounded, size: 28),
+            label: "Profile",
+          ),
+        ],
       ),
     );
   }

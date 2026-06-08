@@ -1,7 +1,7 @@
 class Task {
   int id;
   String title;
-  int SubjectId;
+  int subjectId;
   DateTime deadline;
   bool completed;
 
@@ -9,8 +9,8 @@ class Task {
 
    required this.id,
    required this.title,
-   required this.SubjectId,
+   required this.subjectId,
    required this.deadline,
-    required this.completed,
+   required this.completed,
 });
 }

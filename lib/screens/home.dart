@@ -13,7 +13,6 @@ class HomePage extends StatelessWidget {
       return "Good Afternoon 🌤️";
     }
     else {
-
       return "Good Evening 🌙";
     }
   }
