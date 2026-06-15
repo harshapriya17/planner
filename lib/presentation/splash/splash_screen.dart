@@ -2,7 +2,8 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 
-import '../widgets/bottom_navbar.dart';
+import '../../core/constants/app_colors.dart';
+import '../../widgets/bottom_navbar.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -22,7 +23,8 @@ class _SplashScreenState
 
     Timer(
 
-      const Duration(seconds: 3),
+      const Duration(seconds: 2),
+
           () {
 
         Navigator.pushReplacement(
@@ -31,7 +33,7 @@ class _SplashScreenState
 
           MaterialPageRoute(
 
-            builder: (context) =>
+            builder: (_) =>
             const BottomNavbar(),
           ),
         );
@@ -44,50 +46,57 @@ class _SplashScreenState
 
     return Scaffold(
 
-      backgroundColor: Colors.white,
+      backgroundColor:
+      AppColors.background,
 
       body: Center(
 
         child: Column(
+
           mainAxisAlignment:
           MainAxisAlignment.center,
 
           children: [
 
+            /// LOGO
             Container(
 
               height: 120,
+
               width: 120,
 
               decoration: BoxDecoration(
 
-                color: Colors.blue.shade50,
+                color:
+                AppColors.primary,
 
                 borderRadius:
-                BorderRadius.circular(25),
+                BorderRadius.circular(30),
               ),
 
               child: const Icon(
 
-                Icons.school,
+                Icons.school_rounded,
 
                 size: 70,
 
-                color: Colors.blue,
+                color: Colors.white,
               ),
             ),
 
             const SizedBox(height: 25),
 
+            /// APP NAME
             const Text(
 
               "Study Planner",
 
               style: TextStyle(
-                fontSize: 38,
-                fontWeight: FontWeight.bold,
-                color: Colors.black87,
-                letterSpacing: 2,
+
+                fontSize: 32,
+
+                fontWeight:
+                FontWeight.bold,
               ),
             ),
 
@@ -95,14 +104,20 @@ class _SplashScreenState
 
             Text(
 
-              "Calm • Focus • Start",
+              "Plan • Study • Achieve",
 
               style: TextStyle(
+
                 fontSize: 16,
-                color: Colors.grey.shade600,
-                letterSpacing: 1,
+
+                color:
+                AppColors.textLight,
               ),
             ),
+
+            const SizedBox(height: 40),
+
+            const CircularProgressIndicator(),
           ],
         ),
       ),

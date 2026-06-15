@@ -1,31 +1,29 @@
 import 'package:flutter/material.dart';
 
-import '../screens/home.dart';
-import '../screens/subjects.dart';
-import '../screens/tasks.dart';
-import '../screens/sessions.dart';
-import '../screens/profile.dart';
+import '../presentation/analytics/analytics_page.dart';
+import '../presentation/home/home_page.dart';
+import '../presentation/subjects/subjects_page.dart';
+import '../presentation/tasks/tasks_page.dart';
+import '../presentation/timetable/timetable_page.dart';
+
+import '../core/constants/app_colors.dart';
 
 class BottomNavbar extends StatefulWidget {
   const BottomNavbar({super.key});
 
   @override
-  State<BottomNavbar> createState() =>
-      _BottomNavbarState();
+  State<BottomNavbar> createState() => _BottomNavbarState();
 }
 
-class _BottomNavbarState
-    extends State<BottomNavbar> {
-
+class _BottomNavbarState extends State<BottomNavbar> {
   int currentIndex = 0;
 
-  final List pages = [
-
+  final List<Widget> pages = [
     const HomePage(),
     const SubjectsPage(),
     const TasksPage(),
-    const SessionsPage(),
-    const ProfilePage(),
+    const TimetablePage(),
+    const AnalyticsPage(),
   ];
 
   @override
@@ -35,11 +33,11 @@ class _BottomNavbarState
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: currentIndex,
         type: BottomNavigationBarType.fixed,
-        backgroundColor: const Color(0xffFFFDFB),
-        selectedItemColor: const Color(0xffF79B63),
-        unselectedItemColor: Colors.grey.shade500,
-        showSelectedLabels: false,
-        showUnselectedLabels: false,
+        backgroundColor: AppColors.card,
+        selectedItemColor: AppColors.secondary,
+        unselectedItemColor: AppColors.textLight,
+        showSelectedLabels: true,
+        showUnselectedLabels: true,
         onTap: (index) {
           setState(() {
             currentIndex = index;
@@ -47,24 +45,24 @@ class _BottomNavbarState
         },
         items: const [
           BottomNavigationBarItem(
-            icon: Icon(Icons.home_rounded, size: 28),
+            icon: Icon(Icons.home_rounded),
             label: "Home",
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.menu_book_rounded, size: 28),
+            icon: Icon(Icons.menu_book_rounded),
             label: "Subjects",
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.task_alt_rounded, size: 28),
+            icon: Icon(Icons.task_alt_rounded),
             label: "Tasks",
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.timer_rounded, size: 28),
-            label: "Sessions",
+            icon: Icon(Icons.schedule_rounded),
+            label: "Timetable",
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.person_rounded, size: 28),
-            label: "Profile",
+            icon: Icon(Icons.bar_chart_rounded),
+            label: "Analytics",
           ),
         ],
       ),

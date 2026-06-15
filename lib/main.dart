@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:hive_flutter/hive_flutter.dart';
+import 'core/constants/hive_boxes.dart';
+import 'core/theme/app_theme.dart';
+import 'data/services/hive_service.dart';
+import 'presentation/splash/splash_screen.dart';
 
-import 'screens/splash.dart';
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
 
-void main() {
+  await HiveService.init();
 
   runApp(
     const MyApp(),
@@ -15,84 +20,20 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    return ValueListenableBuilder(
+      valueListenable: Hive.box(HiveBoxes.settings).listenable(),
+      builder: (context, box, _) {
+        final bool isDarkMode = box.get('isDarkMode', defaultValue: false);
 
-    return MaterialApp(
-
-      debugShowCheckedModeBanner: false,
-
-      title: "Study Planner",
-
-      theme: ThemeData(
-
-        /// FONT
-        textTheme:
-        GoogleFonts.poppinsTextTheme(),
-
-        /// BACKGROUND
-        scaffoldBackgroundColor:
-        const Color(0xffF7EDE8),
-
-        /// PRIMARY COLOR
-        primaryColor:
-        const Color(0xffB8A9FF),
-
-        /// APPBAR
-        appBarTheme: const AppBarTheme(
-
-          backgroundColor:
-          Color(0xffF7EDE8),
-
-          foregroundColor:
-          Colors.black,
-
-          elevation: 0,
-
-          centerTitle: true,
-        ),
-
-        /// CARD STYLE
-          cardTheme: CardThemeData(
-
-            color: const Color(0xffFFFDFB),
-
-            elevation: 2,
-
-            shape: RoundedRectangleBorder(
-
-              borderRadius:
-              BorderRadius.circular(25),
-            ),
-          ),
-
-        /// BUTTON STYLE
-        elevatedButtonTheme:
-        ElevatedButtonThemeData(
-
-          style: ElevatedButton.styleFrom(
-
-            backgroundColor:
-            const Color(0xffF79B63),
-
-            foregroundColor:
-            Colors.white,
-
-            shape: RoundedRectangleBorder(
-
-              borderRadius:
-              BorderRadius.circular(18),
-            ),
-
-            padding:
-            const EdgeInsets.symmetric(
-
-              horizontal: 25,
-              vertical: 15,
-            ),
-          ),
-        ),
-      ),
-
-      home: const SplashScreen(),
+        return MaterialApp(
+          debugShowCheckedModeBanner: false,
+          title: 'Study Planner',
+          theme: AppTheme.lightTheme,
+          darkTheme: AppTheme.darkTheme,
+          themeMode: isDarkMode ? ThemeMode.dark : ThemeMode.light,
+          home: const SplashScreen(),
+        );
+      },
     );
   }
 }
